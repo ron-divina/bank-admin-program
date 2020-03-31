@@ -83,14 +83,20 @@ class SuperSavingsAccount(DepositAccount):
             print('Warning: Account is below maintaining balance.')
             self.balance -= 100
 
+    def deposit(self, amount):
+        bonus = amount * (2 / 100)
+        self.balance += amount
+        self.balance += bonus
+
 
 d = DepositAccount(0, None, 'Kana Yoshida', 'September 18, 2002', 3000)
 d1 = NormalSavingsAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 5000)
 d2 = ZeroMaintainingSavingsAccount(2, 'ZMSA', 'Geo Hotz', 'July 5, 1993', 4000)
+d3 = SuperSavingsAccount(3, 'SSA', 'Elon Musk', 'June 28, 1971', 69420)
 
-d1.withdraw(3000)
-print(d1.display_info())
-
+print(d3.display_info())
+d3.deposit(30580)
+print(d3.display_info())
 # The base class should have the following function "display_info" which prints the account information in the following format:
 
 # Account ID: [account id]
