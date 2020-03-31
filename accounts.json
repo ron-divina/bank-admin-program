@@ -1,0 +1,25 @@
+{
+  "accounts": [
+    {
+      "account_id": "ph-342851",
+      "account_type": "ZMSA",
+      "full_name": "Juan Dela Cruz",
+      "birthday": "April 22, 1990",
+      "balance": 65536.00
+    },
+    {
+      "account_id": "ph-552322",
+      "account_type": "NSA",
+      "full_name": "Angelo Martin",
+      "birthday": "June 2, 1999",
+      "balance": 32768.38
+    },
+    {
+      "account_id": "ph-252124",
+      "account_type": "SSA",
+      "full_name": "Christine Santos",
+      "birthday": "December 3, 1983",
+      "balance": 2147483.50
+    }
+  ]
+}
