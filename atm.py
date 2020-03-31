@@ -24,7 +24,7 @@ class DepositAccount:
             self.account_type = 'Normal Savings Account'
         elif self.account_type == 'ZMSA':
             self.account_type = 'Zero Maintaining Savings Account'
-        else:
+        elif self.account_type == 'SSA':
             self.account_type = 'Super Savings Account'
 
         birth_date = datetime.strptime(self.birthday, "%B %d, %Y")
@@ -42,9 +42,20 @@ class DepositAccount:
         Balance: {balance_readable_format}
         """
 
+    def withdraw(self, amount):
+        self.balance -= amount
+
+    def deposit(self, amount):
+        self.balance += amount
+
 
 d1 = DepositAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 125000.0, 3000)
 print(d1.display_info())
+d1.deposit(555)
+print(d1.display_info())
+
+# d1.withdraw(25000)
+# print(d1.display_info())
 
 # The base class should have the following function "display_info" which prints the account information in the following format:
 
