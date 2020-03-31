@@ -55,12 +55,10 @@ class NormalSavingsAccount(DepositAccount):
         self.maintaining_balance = 3000
 
     def withdraw(self, amount):
+        self.balance -= amount
         if self.balance < 3000:
             print('Warning: Account is below maintaining balance.')
-            self.balance -= amount
             self.balance -= 100
-        else:
-            self.balance -= amount
 
 
 class ZeroMaintainingSavingsAccount(DepositAccount):
@@ -68,17 +66,30 @@ class ZeroMaintainingSavingsAccount(DepositAccount):
         super().__init__(account_id, account_type, full_name,
                          birthday, balance)
 
-    def withdraw(self):
+    def withdraw(self, amount):
         self.balance -= amount
         self.balance -= 12
 
 
-d = ZeroMaintainingSavingsAccount(
-    0, None, 'Kana Yoshida', 'September 18, 2002', 3000)
-d1 = NormalSavingsAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 2000)
+class SuperSavingsAccount(DepositAccount):
+    def __init__(self, account_id, account_type, full_name, birthday, balance):
+        super().__init__(account_id, account_type, full_name,
+                         birthday, balance)
+        self.maintaining_balance = 100000
 
-d1.withdraw(100)
+    def withdraw(self, amount):
+        self.balance -= amount
+        if self.balance < 100000:
+            print('Warning: Account is below maintaining balance.')
+            self.balance -= 100
 
+
+d = DepositAccount(0, None, 'Kana Yoshida', 'September 18, 2002', 3000)
+d1 = NormalSavingsAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 5000)
+d2 = ZeroMaintainingSavingsAccount(2, 'ZMSA', 'Geo Hotz', 'July 5, 1993', 4000)
+
+d1.withdraw(3000)
+print(d1.display_info())
 
 # The base class should have the following function "display_info" which prints the account information in the following format:
 
