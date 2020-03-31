@@ -9,13 +9,13 @@
 
 
 class DepositAccount:
-    def __init__(self, account_id, account_type, full_name, birthday, balance, maintaining_balance):
+    def __init__(self, account_id, account_type, full_name, birthday, balance):
         self.account_id = account_id
         self.account_type = account_type
         self.full_name = full_name
         self.birthday = birthday
         self.balance = balance
-        self.maintaining_balance = maintaining_balance
+        self.maintaining_balance = 0
 
     def display_info(self):
         from datetime import datetime, date
@@ -49,11 +49,22 @@ class DepositAccount:
         self.balance += amount
 
 
-d1 = DepositAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 125000.0, 3000)
-print(d1.display_info())
-d1.deposit(555)
-print(d1.display_info())
+class NormalSavingsAccount(DepositAccount):
+    def __init__(self, account_id, account_type, full_name, birthday, balance):
+        super().__init__(account_id, account_type, full_name, birthday, balance)
+        self.maintaining_balance = 3000
 
+    def withdraw(self, amount):
+        if self.balance < 3000:
+            self.balance -= amount
+            self.balance -= 100
+        else:
+            self.balance -= amount
+
+
+d1 = NormalSavingsAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 2000)
+d1.withdraw(100)
+print(d1.display_info())
 # d1.withdraw(25000)
 # print(d1.display_info())
 
