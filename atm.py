@@ -7,6 +7,17 @@
 
 # 2. Create a base class, DepositAccount, containing attributes: account_id, account_type, full_name, birthday, balance, and maintaining_balance
 
+
+class DepositAccount:
+    def __init__(self, account_id, account_type, full_name, birthday, balance, maintaining_balance):
+        self.account_id = account_id
+        self.account_type = account_type
+        self.full_name = full_name
+        self.birthday = birthday
+        self.balance = balance
+        self.maintaining_balance = maintaining_balance
+
+
 # The base class should have the following function "display_info" which prints the account information in the following format:
 
 # Account ID: [account id]
@@ -57,4 +68,3 @@
 # - Every time the user deposits money, there's a bonus of 2% on top of the deposited amount. E.g. if the user deposits P10,000 the system will add a bonus of P200.
 
 # 4. Create a class "AccountDatabase" which has an attribute "accounts" which is an list / array that will contain DepositAccount objects. You may add more attributes and functions as you see fit to complete the rest of the requirements.
-
