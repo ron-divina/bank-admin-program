@@ -17,6 +17,34 @@ class DepositAccount:
         self.balance = balance
         self.maintaining_balance = maintaining_balance
 
+    def display_info(self):
+        from datetime import datetime, date
+
+        if self.account_type == 'NSA':
+            self.account_type = 'Normal Savings Account'
+        elif self.account_type == 'ZMSA':
+            self.account_type = 'Zero Maintaining Savings Account'
+        else:
+            self.account_type = 'Super Savings Account'
+
+        birth_date = datetime.strptime(self.birthday, "%B %d, %Y")
+        today = date.today()
+        age = today.year - birth_date.year - \
+            ((today.month, today.day) < (birth_date.month, birth_date.day))
+
+        balance_readable_format = "₱{:,.2f}".format(self.balance)
+
+        return f"""
+        Account ID: {self.account_id}
+        Full Name: {self.full_name}
+        Account Type: {self.account_type}
+        Age: {age}
+        Balance: {balance_readable_format}
+        """
+
+
+d1 = DepositAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 125000.0, 3000)
+print(d1.display_info())
 
 # The base class should have the following function "display_info" which prints the account information in the following format:
 
