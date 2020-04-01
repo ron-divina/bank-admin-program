@@ -96,11 +96,18 @@ class AccountDatabase:
     def add_account(self, account):
         self.accounts.append(account)
 
-    def show_accounts(self):
+    def show_accounts_list(self):
         accounts = []
         for account in self.accounts:
             accounts.append(account.full_name + ':' +
                             str(account.account_type))
+
+        return accounts
+
+    def show_accounts_dict(self):
+        accounts = dict()
+        for account in self.accounts:
+            accounts[account.full_name] = str(account.account_type)
 
         return accounts
 
@@ -117,7 +124,8 @@ account_db.add_account(d1)
 account_db.add_account(d2)
 account_db.add_account(d3)
 
-print(account_db.show_accounts())
+print(account_db.show_accounts_list())
+print(account_db.show_accounts_dict())
 # The base class should have the following function "display_info" which prints the account information in the following format:
 
 # Account ID: [account id]
