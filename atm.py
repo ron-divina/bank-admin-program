@@ -26,15 +26,15 @@ class DepositAccount:
         age = today.year - birth_date.year - \
             ((today.month, today.day) < (birth_date.month, birth_date.day))
 
-        balance_readable_format = "₱{:,.2f}".format(self.balance)
+        balance_readable_format = "P{:,.2f}".format(self.balance)
 
-        return f"""
-        Account ID: {self.account_id}
-        Full Name: {self.full_name}
-        Account Type: {self.account_type}
-        Age: {age}
-        Balance: {balance_readable_format}
-        """
+        return '''
+        Account ID: {}
+        Full Name: {}
+        Account Type: {}
+        Age: {}
+        Balance: {}
+        '''.format(self.account_id, self.full_name, self.account_type, age, balance_readable_format)
 
     def withdraw(self, amount):
         self.balance -= amount

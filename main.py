@@ -35,35 +35,52 @@ for account in json['accounts']:
 
     account_db_json.add_account(new_account)
 
-print(account_db.show_accounts_dict())
-print(account_db.show_accounts_list())
+# print(account_db.show_accounts_dict())
+# print(account_db.show_accounts_list())
 
-print(account_db_json.show_accounts_dict())
-print(account_db_json.show_accounts_list())
+# print(account_db_json.show_accounts_dict())
+# print(account_db_json.show_accounts_list())
 
-# Main file
-# by [your full name]
 
-# SECTION II - Main file and reading from initial data
+def MainMenu():
 
-# 1. This is the file, "main.py", import the atm classes for your use to accomplish the requirements
+    print(''' 
+ ============================================================
+ ==============================
+ Welcome to Pai Bank ATM Admin
+ ==============================
 
-# 2. Analyze the attached initial data (json format) final_exam_initial_data.json , it contains the sample list of accounts that the bank has.
+ ( 1 ) List All Accounts
+ ( 2 ) Deposit Money to an Account
+ ( 3 ) Withdraw Money from an Account
+ ( 4 ) Exit
+ ''')
 
-# 3. Make sure final_exam_initial_data.json is in the same directory as your main.py and atm.py.
+    user_input = int(input("Input choice: "))
+    print('============================================================')
 
-# 4. Instantiate a new AccountDatabase object
+    if user_input == 1:
+        list_all_accounts()
 
-# 5. Your program should read and load the file, "final_exam_initial_data.json"* into the AccountDatabase object.
-# Hint: For loading a json file, you may check:
-# https://stackoverflow.com/questions/7771011/how-to-parse-data-in-json
-# and
-# https://pythonbasics.org/read-json-file/
+    if user_input == 2:
+        pass
 
-# Iterate each account in the json file and instantiate a correct deposit account object based from account_type then add it to AccountDatabase's accounts list.
+    if user_input == 3:
+        pass
 
-# * - Please Note that a different file containing different data will be used when your program is checked so make sure you do not hardcode the data.
+    if user_input == 4:
+        exit()
 
+
+def list_all_accounts():
+    for account in account_db_json.accounts:
+        print(account.display_info())
+
+    input('Press ENTER to continue...')
+    MainMenu()
+
+
+MainMenu()
 
 # SECTION III - Main Menu
 
