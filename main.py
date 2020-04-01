@@ -1,10 +1,11 @@
 from atm import DepositAccount, NormalSavingsAccount, ZeroMaintainingSavingsAccount, SuperSavingsAccount, AccountDatabase
+import json
 
-
-d = DepositAccount(0, None, 'Kana Yoshida', 'September 18, 2002', 3000)
-d1 = NormalSavingsAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 5000)
-d2 = ZeroMaintainingSavingsAccount(2, 'ZMSA', 'Geo Hotz', 'July 5, 1993', 4000)
-d3 = SuperSavingsAccount(3, 'SSA', 'Elon Musk', 'June 28, 1971', 69420)
+d = DepositAccount('0', None, 'Kana Yoshida', 'September 18, 2002', 3000)
+d1 = NormalSavingsAccount('1', 'NSA', 'Ron Divina', 'August 10, 1999', 5000)
+d2 = ZeroMaintainingSavingsAccount(
+    '2', 'ZMSA', 'Geo Hotz', 'July 5, 1993', 4000)
+d3 = SuperSavingsAccount('3', 'SSA', 'Elon Musk', 'June 28, 1971', 69420)
 
 account_db = AccountDatabase()
 
@@ -13,8 +14,33 @@ account_db.add_account(d1)
 account_db.add_account(d2)
 account_db.add_account(d3)
 
-print(account_db.show_accounts_list())
+
+account_db_json = AccountDatabase()
+
+with open('accounts.json', 'r') as myfile:
+    data = myfile.read()
+
+json = json.loads(data)
+
+for account in json['accounts']:
+    if account['account_type'] == 'NSA':
+        new_account = NormalSavingsAccount(
+            account['account_id'], account['account_type'], account['full_name'], account['birthday'], account['balance'])
+    if account['account_type'] == 'ZMSA':
+        new_account = ZeroMaintainingSavingsAccount(
+            account['account_id'], account['account_type'], account['full_name'], account['birthday'], account['balance'])
+    if account['account_type'] == 'SSA':
+        new_account = SuperSavingsAccount(
+            account['account_id'], account['account_type'], account['full_name'], account['birthday'], account['balance'])
+
+    account_db_json.add_account(new_account)
+
 print(account_db.show_accounts_dict())
+print(account_db.show_accounts_list())
+
+print(account_db_json.show_accounts_dict())
+print(account_db_json.show_accounts_list())
+
 # Main file
 # by [your full name]
 

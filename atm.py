@@ -1,3 +1,5 @@
+
+
 class DepositAccount:
     def __init__(self, account_id, account_type, full_name, birthday, balance):
         self.account_id = account_id
@@ -10,6 +12,7 @@ class DepositAccount:
     def display_info(self):
         from datetime import datetime, date
 
+        # Converts account type acronyms to readable meaning
         if self.account_type == 'NSA':
             self.account_type = 'Normal Savings Account'
         elif self.account_type == 'ZMSA':
@@ -17,6 +20,7 @@ class DepositAccount:
         elif self.account_type == 'SSA':
             self.account_type = 'Super Savings Account'
 
+        # Converts the stringed birthday into datetime format to compute for the age
         birth_date = datetime.strptime(self.birthday, "%B %d, %Y")
         today = date.today()
         age = today.year - birth_date.year - \
@@ -89,7 +93,7 @@ class AccountDatabase:
     def show_accounts_list(self):
         accounts = []
         for account in self.accounts:
-            accounts.append(account.full_name + ':' +
+            accounts.append(account.account_id + ':' +
                             str(account.account_type))
 
         return accounts
@@ -97,22 +101,6 @@ class AccountDatabase:
     def show_accounts_dict(self):
         accounts = dict()
         for account in self.accounts:
-            accounts[account.full_name] = str(account.account_type)
+            accounts[account.account_id] = str(account.account_type)
 
         return accounts
-
-
-d = DepositAccount(0, None, 'Kana Yoshida', 'September 18, 2002', 3000)
-d1 = NormalSavingsAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 5000)
-d2 = ZeroMaintainingSavingsAccount(2, 'ZMSA', 'Geo Hotz', 'July 5, 1993', 4000)
-d3 = SuperSavingsAccount(3, 'SSA', 'Elon Musk', 'June 28, 1971', 69420)
-
-account_db = AccountDatabase()
-
-account_db.add_account(d)
-account_db.add_account(d1)
-account_db.add_account(d2)
-account_db.add_account(d3)
-
-print(account_db.show_accounts_list())
-print(account_db.show_accounts_dict())
