@@ -1,3 +1,20 @@
+from atm import DepositAccount, NormalSavingsAccount, ZeroMaintainingSavingsAccount, SuperSavingsAccount, AccountDatabase
+
+
+d = DepositAccount(0, None, 'Kana Yoshida', 'September 18, 2002', 3000)
+d1 = NormalSavingsAccount(1, 'NSA', 'Ron Divina', 'August 10, 1999', 5000)
+d2 = ZeroMaintainingSavingsAccount(2, 'ZMSA', 'Geo Hotz', 'July 5, 1993', 4000)
+d3 = SuperSavingsAccount(3, 'SSA', 'Elon Musk', 'June 28, 1971', 69420)
+
+account_db = AccountDatabase()
+
+account_db.add_account(d)
+account_db.add_account(d1)
+account_db.add_account(d2)
+account_db.add_account(d3)
+
+print(account_db.show_accounts_list())
+print(account_db.show_accounts_dict())
 # Main file
 # by [your full name]
 
@@ -22,9 +39,6 @@
 # * - Please Note that a different file containing different data will be used when your program is checked so make sure you do not hardcode the data.
 
 
-
-
-
 # SECTION III - Main Menu
 
 # (You have the option to make the Main Menu a separate class but it's not required)
@@ -43,7 +57,7 @@
 # ( 3 ) Withdraw Money from an Account
 # ( 4 ) Exit
 
-# Input choice: 
+# Input choice:
 # ============================================================
 
 # Note that "============================================================" is not required to be displayed, it's just a way to indicate that it's a program display. This is true for all program examples. Displaying or not displaying it will not affect your grade.
@@ -73,7 +87,7 @@
 # Full Name: Angelo Martin
 # Account Type: Normal Savings Account
 # Age: 20
-# Balance: P32,768.38 
+# Balance: P32,768.38
 
 # 3.
 # Account ID: ph-252124
@@ -123,7 +137,6 @@
 # For simplicity, it is not required to handle invalid account ID's (but you may do so if you feel like it).
 
 
-
 # 4. When user inputs "3" and presses enter, the program will ask the user to input the Account ID.
 
 # User will need to enter a specific account ID e.g. "ph-342851"
@@ -154,7 +167,6 @@
 # Pressing enter will go back to the main menu screen.
 
 # For simplicity, it is not required to handle invalid account ID's (but you may do so if you feel like it).
-
 
 
 # 5. When user inputs "4" and presses enter, the program will exit.
