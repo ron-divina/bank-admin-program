@@ -91,6 +91,8 @@ def deposit_to_account():
                 deposit_amount = int(input('Amount to Deposit: '))
                 account.deposit(deposit_amount)
             except ValueError:
+                print('Invalid input')
+            else:
                 print(
                     f'Successfully deposited money, new balance is {account.readable_balance()}')
 
