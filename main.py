@@ -87,10 +87,15 @@ def deposit_to_account():
         if account_id_input == account.account_id:
             print(account.display_info())
 
-            deposit_amount = int(input('Amount to Deposit: '))
-            account.deposit(deposit_amount)
-            print(
-                f'Successfully deposited money, new balance is {account.readable_balance}')
+            try:
+                deposit_amount = int(input('Amount to Deposit: '))
+                account.deposit(deposit_amount)
+            except ValueError:
+                print(
+                    f'Successfully deposited money, new balance is {account.readable_balance()}')
+
+    input('Press ENTER to continue...')
+    MainMenu()
 
 
 MainMenu()
