@@ -90,7 +90,7 @@ def deposit_to_account():
             deposit_amount = int(input('Amount to Deposit: '))
             account.deposit(deposit_amount)
             print(
-                f'Successfully deposited money, new balance is {account.balance}')
+                f'Successfully deposited money, new balance is {account.readable_balance}')
 
 
 MainMenu()

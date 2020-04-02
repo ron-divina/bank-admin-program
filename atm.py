@@ -6,7 +6,8 @@ class DepositAccount:
         self.account_type = account_type
         self.full_name = full_name
         self.birthday = birthday
-        self.balance = "P{:,.2f}".format(self.balance)
+        self.balance = balance
+        self.readable_balance = "P{:,.2f}".format(balance)
         self.maintaining_balance = 0
 
     def display_info(self):
@@ -26,14 +27,12 @@ class DepositAccount:
         age = today.year - birth_date.year - \
             ((today.month, today.day) < (birth_date.month, birth_date.day))
 
-        # balance_readable_format =
-
         return f'''
         Account ID: {self.account_id}
         Full Name: {self.full_name}
         Account Type: {self.account_type}
         Age: {age}
-        Balance: {balance_readable_format}
+        Balance: {self.readable_balance}
         '''
 
     def withdraw(self, amount):
