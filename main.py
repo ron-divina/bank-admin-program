@@ -44,7 +44,7 @@ for account in json['accounts']:
 
 def MainMenu():
 
-    print(''' 
+    print('''
  ============================================================
  ==============================
  Welcome to Pai Bank ATM Admin
@@ -63,7 +63,7 @@ def MainMenu():
         list_all_accounts()
 
     if user_input == 2:
-        pass
+        deposit_to_account()
 
     if user_input == 3:
         pass
@@ -78,6 +78,19 @@ def list_all_accounts():
 
     input('Press ENTER to continue...')
     MainMenu()
+
+
+def deposit_to_account():
+    account_id_input = input('Enter Account ID: ')
+
+    for account in account_db_json.accounts:
+        if account_id_input == account.account_id:
+            print(account.display_info())
+
+            deposit_amount = int(input('Amount to Deposit: '))
+            account.deposit(deposit_amount)
+            print(
+                f'Successfully deposited money, new balance is {account.balance}')
 
 
 MainMenu()
