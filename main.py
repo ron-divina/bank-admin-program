@@ -53,27 +53,30 @@ def MainMenu():
  ( 4 ) Exit
  ''')
 
-    user_input = int(input("Input choice: "))
-    print('============================================================')
+    try:
+        user_input = int(input("Input choice: "))
+        print('============================================================')
+    except ValueError:
+        MainMenu()
+    else:
+        if user_input == 1:
+            list_all_accounts()
 
-    if user_input == 1:
-        list_all_accounts()
+        if user_input == 2:
+            deposit_to_account()
 
-    if user_input == 2:
-        deposit_to_account()
+        if user_input == 3:
+            withdraw_from_account()
 
-    if user_input == 3:
-        withdraw_from_account()
-
-    if user_input == 4:
-        exit()
+        if user_input == 4:
+            exit()
 
 
 def list_all_accounts():
     for account in account_db_json.accounts:
         print(account.display_info())
 
-    input('Press ENTER to continue...')
+    input('Press ENTER key to return to main menu...')
     MainMenu()
 
 
@@ -93,47 +96,28 @@ def deposit_to_account():
                 print(
                     f'Successfully deposited money, new balance is {account.readable_balance()}')
 
-    input('Press ENTER to continue...')
+    input('Press ENTER key to return to main menu...')
     MainMenu()
 
 
 def withdraw_from_account():
-    pass
+    account_id_input = input('Enter Account ID: ')
+
+    for account in account_db_json.accounts:
+        if account_id_input == account.account_id:
+            print(account.display_info())
+
+            try:
+                deposit_amount = int(input('Amount to Withdraw: '))
+                account.withdraw(deposit_amount)
+            except ValueError:
+                print('Invalid input')
+            else:
+                print(
+                    f'Successfully withdrawn money, new balance is {account.readable_balance()}')
+
+    input('Press ENTER key to return to main menu...')
+    MainMenu()
 
 
 MainMenu()
-
-
-# 4. When user inputs "3" and presses enter, the program will ask the user to input the Account ID.
-
-# User will need to enter a specific account ID e.g. "ph-342851"
-
-# The program will look for the deposit account object in the AccountDatabase with the account ID and display the information of the account (i.e. call the object's display_info function).
-
-# The program will then ask for the amount of money to withdraw and when the user inputs the amount and presses enter, the system will deduct the amount to the account's balance, following the logic of each deposit account, and display the new balance information. At this point, if you've done your classes correctly, you just need to call the withdraw function of the object passing the amount.
-
-# E.g.
-
-# ============================================================
-# Input Account ID: ph-342851
-
-# Account ID: ph-342851
-# Full Name: Juan Dela Cruz
-# Account Type: Zero Maintaining Savings Account
-# Age: 29
-# Balance: P65,536.00
-
-# Amount to Withdraw: 1000
-
-# Successfully withdrawn money, new balance is P64,524.00
-
-# Press enter key to return to main menu..
-# ============================================================
-
-
-# Pressing enter will go back to the main menu screen.
-
-# For simplicity, it is not required to handle invalid account ID's (but you may do so if you feel like it).
-
-
-# 5. When user inputs "4" and presses enter, the program will exit.
